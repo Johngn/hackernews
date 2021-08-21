@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import {
   getSingleItemDetails,
   getAllItemDetails,
 } from '../../utils/httpRequests';
+
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import Comment from '../../components/Comment/Comment';
+
+import './SingleStory.scss';
 
 const SingleStory = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,29 +30,24 @@ const SingleStory = props => {
   }, [props.match.params.id]);
 
   return (
-    <>
+    <div className="single-story">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         storyDetails && (
           <div>
-            <h1>
-              {storyDetails.by}
-              {storyDetails?.text}
-              {storyDetails?.by} test
-            </h1>
+            <h1>{storyDetails?.text}</h1>
+            <h1>Author: {storyDetails?.by}</h1>
             <div>
               {comments &&
                 comments.map(comment => (
-                  <div key={comment.id} style={{ marginTop: '10px' }}>
-                    <p>{comment.text}</p>
-                  </div>
+                  <Comment key={comment.id} text={comment.text} />
                 ))}
             </div>
           </div>
         )
       )}
-    </>
+    </div>
   );
 };
 

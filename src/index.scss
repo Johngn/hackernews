@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+$main-text-color: #fff;
+$dark-color: rgb(26, 42, 46);
+$med-color: #325158;
+$light-color: #4a7883;
+$disabled-background-color: rgb(37, 55, 59);
+$disabled-color: rgb(92, 92, 92);
+
 * {
   margin: 0;
   padding: 0;
@@ -21,4 +30,8 @@
 button,
 select {
   cursor: pointer;
+}
+
+body {
+  background-color: $dark-color;
 }

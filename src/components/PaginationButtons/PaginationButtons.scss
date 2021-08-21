@@ -1,10 +1,22 @@
+@import '../../index.scss';
+
 .pagination-button-container {
-  margin-top: 20px;
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
 
   button {
     padding: 10px;
     font-size: 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: $dark-color;
+    color: #fff;
+  }
+
+  button:disabled {
+    cursor: default;
+    color: $disabled-color;
+    background-color: $disabled-background-color;
   }
 }

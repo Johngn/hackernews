@@ -1,9 +1,11 @@
 import RingLoader from 'react-spinners/RingLoader';
 
+import './LoadingSpinner.scss';
+
 const LoadingSpinner = () => {
   return (
     <div className="loading-spinner-container">
-      <RingLoader color={'#000'} loading={true} size={100} />
+      <RingLoader color={'#fff'} loading={true} size={100} />
     </div>
   );
 };

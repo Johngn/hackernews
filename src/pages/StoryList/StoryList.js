@@ -66,41 +66,41 @@ const StoryList = () => {
   return (
     <div className="story-list">
       <h1>Hacker News top stories</h1>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Header
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            sortType={sortType}
+            setSortType={setSortType}
+          />
 
-      <Header
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        sortType={sortType}
-        setSortType={setSortType}
-      />
-
-      <div className="story-list-story-container">
-        {isLoading ? (
-          // <div className="story-list-loading-spinner-container">
-          <LoadingSpinner />
-        ) : (
-          // </div>
-          <>
+          <div className="story-list-story-container">
             {stories
               .slice(page * pageLength, page * pageLength + pageLength)
               .map(story => (
                 <StoryListItem
                   key={story.id}
+                  score={story.score}
+                  url={story.url}
                   id={story.id}
                   by={story.by}
                   title={story.title}
+                  descendants={story.descendants}
                 />
               ))}
+          </div>
 
-            <PaginationButtons
-              stories={stories}
-              page={page}
-              setPage={setPage}
-              pageLength={pageLength}
-            />
-          </>
-        )}
-      </div>
+          <PaginationButtons
+            stories={stories}
+            page={page}
+            setPage={setPage}
+            pageLength={pageLength}
+          />
+        </>
+      )}
     </div>
   );
 };

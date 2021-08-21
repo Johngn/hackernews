@@ -1,9 +1,27 @@
-.sort-select {
-  text-align: center;
-  width: 150px;
-  font-size: 20px;
+@import '../../index.scss';
 
-  option {
+.sort-select {
+  display: flex;
+  align-items: center;
+
+  label {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #fff;
+  }
+
+  select {
+    background-color: $dark-color;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
     text-align: center;
+    width: 150px;
+    font-size: 20px;
+    height: 100%;
+
+    option {
+      text-align: center;
+    }
   }
 }
