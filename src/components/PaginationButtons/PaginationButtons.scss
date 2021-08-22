@@ -4,9 +4,10 @@
   margin-top: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   button {
-    padding: 10px;
+    padding: 7px;
     font-size: 20px;
     border: $border;
     border-radius: 3px;
@@ -22,5 +23,10 @@
     cursor: default;
     color: $disabled-color;
     background-color: $disabled-background-color;
+  }
+
+  p {
+    color: $main-text-color;
+    font-size: 16px;
   }
 }

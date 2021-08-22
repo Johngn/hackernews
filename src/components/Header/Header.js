@@ -6,8 +6,8 @@ import './Header.scss';
 const Header = ({ searchTerm, setSearchTerm, sortType, setSortType }) => {
   return (
     <div className="story-list-header">
-      <SortSelect sortType={sortType} setSortType={setSortType} />
       <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SortSelect sortType={sortType} setSortType={setSortType} />
     </div>
   );
 };

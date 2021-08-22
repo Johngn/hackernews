@@ -12,11 +12,11 @@ const StoryList = () => {
   const [page, setPage] = useState(0);
   const [sortType, setSortType] = useState('id');
   const [stories, setStories] = useState([]);
+  const [filteredStories, setFilteredStories] = useState([]);
   const [storyIds, setStoryIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  // const [pageLength, setPageLength] = useState(10);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const pageLength = 12;
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,6 +29,7 @@ const StoryList = () => {
     if (storyIds.length > 0) {
       getAllItemDetails(storyIds).then(data => {
         setStories(data);
+        setFilteredStories(data);
         setIsLoading(false);
       });
     }
@@ -46,9 +47,12 @@ const StoryList = () => {
         (a, b) => b[sortProperty] - a[sortProperty]
       );
       setStories(sorted);
+      setFilteredStories(sorted);
+      setSearchTerm('');
     };
 
     sortArray(sortType);
+    setPage(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortType]);
 
@@ -57,11 +61,10 @@ const StoryList = () => {
       story.title.toLowerCase().includes(searchTerm)
     );
 
-    setStories(filteredStories);
+    setFilteredStories(filteredStories);
+    setPage(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
-
-  const pageLength = 10;
 
   return isLoading ? (
     <LoadingSpinner />
@@ -75,7 +78,7 @@ const StoryList = () => {
       />
 
       <div className="story-list-story-container">
-        {stories
+        {filteredStories
           .slice(page * pageLength, page * pageLength + pageLength)
           .map(story => (
             <StoryListItem
@@ -90,12 +93,18 @@ const StoryList = () => {
           ))}
       </div>
 
-      <PaginationButtons
-        stories={stories}
-        page={page}
-        setPage={setPage}
-        pageLength={pageLength}
-      />
+      {filteredStories.length > 0 ? (
+        <PaginationButtons
+          stories={filteredStories}
+          page={page}
+          setPage={setPage}
+          pageLength={pageLength}
+        />
+      ) : (
+        <div className="no-stories-container">
+          <h2>No stories found</h2>
+        </div>
+      )}
     </div>
   );
 };

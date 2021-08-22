@@ -2,7 +2,7 @@
 
 .story-list {
   max-width: 1000px;
-  min-height: 650px;
+  // min-height: 650px;
   margin: 15px auto;
   padding: 10px;
   border-radius: 2px;
@@ -18,5 +18,11 @@
 
   .story-list-story-container {
     margin-bottom: 10px;
+  }
+
+  .no-stories-container {
+    text-align: center;
+    margin: 30px 0;
+    color: $main-text-color;
   }
 }

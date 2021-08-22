@@ -1,6 +1,8 @@
+@import '../../index.scss';
+
 .search-box {
   * {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   label {
@@ -15,5 +17,6 @@
 
   input {
     padding: 3px;
+    border: $border;
   }
 }

@@ -1,8 +1,6 @@
-import { Link } from 'react-router-dom';
-
 import './StoryListItem.scss';
 
-const StoryListItem = ({ score, by, id, title, url, descendants }) => {
+const StoryListItem = ({ score, by, title, url, descendants }) => {
   return (
     <div className="story-list-item">
       <p>
@@ -17,9 +15,6 @@ const StoryListItem = ({ score, by, id, title, url, descendants }) => {
           <span>{by}</span>
         </p>
         <p className="comments">
-          {/* <Link to={`/story/${id}`}>
-            {descendants} {descendants === 1 ? 'comment' : 'comments'}
-          </Link> */}
           {descendants} {descendants === 1 ? 'comment' : 'comments'}
         </p>
       </div>
