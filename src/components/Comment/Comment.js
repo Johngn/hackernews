@@ -1,6 +1,8 @@
+import './Comment.scss';
+
 const Comment = ({ text, by }) => {
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div className="comment">
       <p>{text}</p>
       <p>Author: {by}</p>
     </div>

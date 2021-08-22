@@ -12,8 +12,8 @@
 
   select {
     background-color: $dark-color;
-    border: none;
-    border-radius: 5px;
+    border: $border;
+    border-radius: 2px;
     color: #fff;
     text-align: center;
     width: 150px;

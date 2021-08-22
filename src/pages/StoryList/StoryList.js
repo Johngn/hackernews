@@ -20,7 +20,7 @@ const StoryList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs().then(data => {
+    getAllStoryIDs(30).then(data => {
       setStoryIds(data);
     });
   }, []);
@@ -63,44 +63,39 @@ const StoryList = () => {
 
   const pageLength = 10;
 
-  return (
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : (
     <div className="story-list">
-      <h1>Hacker News top stories</h1>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <Header
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            sortType={sortType}
-            setSortType={setSortType}
-          />
+      <Header
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortType={sortType}
+        setSortType={setSortType}
+      />
 
-          <div className="story-list-story-container">
-            {stories
-              .slice(page * pageLength, page * pageLength + pageLength)
-              .map(story => (
-                <StoryListItem
-                  key={story.id}
-                  score={story.score}
-                  url={story.url}
-                  id={story.id}
-                  by={story.by}
-                  title={story.title}
-                  descendants={story.descendants}
-                />
-              ))}
-          </div>
+      <div className="story-list-story-container">
+        {stories
+          .slice(page * pageLength, page * pageLength + pageLength)
+          .map(story => (
+            <StoryListItem
+              key={story.id}
+              score={story.score}
+              url={story.url}
+              id={story.id}
+              by={story.by}
+              title={story.title}
+              descendants={story.descendants}
+            />
+          ))}
+      </div>
 
-          <PaginationButtons
-            stories={stories}
-            page={page}
-            setPage={setPage}
-            pageLength={pageLength}
-          />
-        </>
-      )}
+      <PaginationButtons
+        stories={stories}
+        page={page}
+        setPage={setPage}
+        pageLength={pageLength}
+      />
     </div>
   );
 };

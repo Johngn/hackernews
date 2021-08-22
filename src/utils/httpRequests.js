@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const baseURL = 'https://hacker-news.firebaseio.com/v0';
 
-export const getAllStoryIDs = async () => {
+export const getAllStoryIDs = async numberOfStories => {
   const res = await axios.get(`${baseURL}/newstories.json`);
   // Slicing the array of IDs so we don't do 500 GET requests every time
-  return res.data.slice(0, 20);
+  return res.data.slice(0, numberOfStories);
 };
 
 export const getSingleItemDetails = async ID => {
@@ -20,5 +20,6 @@ export const getAllItemDetails = async IDs => {
       return getSingleItemDetails(ID);
     })
   );
+  console.log(res);
   return res;
 };

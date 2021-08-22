@@ -1,0 +1,13 @@
+@import '../../index.scss';
+
+.navbar {
+  background-color: $med-color;
+  border-bottom: $border;
+  text-align: center;
+
+  h1 {
+    color: #fff;
+    padding: 2px;
+    font-family: 'Klee One', cursive;
+  }
+}

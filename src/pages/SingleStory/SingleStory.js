@@ -30,24 +30,24 @@ const SingleStory = props => {
   }, [props.match.params.id]);
 
   return (
-    <div className="single-story">
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        storyDetails && (
+    // <div >
+    isLoading ? (
+      <LoadingSpinner />
+    ) : (
+      storyDetails && (
+        <div className="single-story">
+          <h1>{storyDetails?.title}</h1>
+          <h4>Author: {storyDetails?.by}</h4>
           <div>
-            <h1>{storyDetails?.text}</h1>
-            <h1>Author: {storyDetails?.by}</h1>
-            <div>
-              {comments &&
-                comments.map(comment => (
-                  <Comment key={comment.id} text={comment.text} />
-                ))}
-            </div>
+            {comments &&
+              comments.map(comment => (
+                <Comment key={comment.id} text={comment.text} by={comment.by} />
+              ))}
           </div>
-        )
-      )}
-    </div>
+        </div>
+      )
+    )
+    // </div>
   );
 };
 

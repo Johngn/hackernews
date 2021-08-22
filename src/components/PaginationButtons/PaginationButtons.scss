@@ -8,10 +8,14 @@
   button {
     padding: 10px;
     font-size: 20px;
-    border: none;
+    border: $border;
     border-radius: 3px;
     background-color: $dark-color;
     color: #fff;
+  }
+
+  button:active {
+    background-color: $light-color;
   }
 
   button:disabled {

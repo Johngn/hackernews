@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Rampart+One&display=swap');
 
 $main-text-color: #fff;
+$text-color-dark: black;
 $dark-color: rgb(26, 42, 46);
 $med-color: #325158;
 $light-color: #4a7883;
 $disabled-background-color: rgb(37, 55, 59);
 $disabled-color: rgb(92, 92, 92);
+
+$border: 1px solid #3d6a75;
 
 * {
   margin: 0;

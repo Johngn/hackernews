@@ -17,9 +17,10 @@ const StoryListItem = ({ score, by, id, title, url, descendants }) => {
           <span>{by}</span>
         </p>
         <p className="comments">
-          <Link to={`/story/${id}`}>
+          {/* <Link to={`/story/${id}`}>
             {descendants} {descendants === 1 ? 'comment' : 'comments'}
-          </Link>
+          </Link> */}
+          {descendants} {descendants === 1 ? 'comment' : 'comments'}
         </p>
       </div>
     </div>
