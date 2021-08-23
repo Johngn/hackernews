@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import PaginationButtons from './PaginationButtons';
+import Pagination from './Pagination';
 
-describe('PaginationButtons component', () => {
+describe('Pagination component', () => {
   test('Next button fires callback on click', () => {
-    // render(<PaginationButtons  />);
+    // render(<Pagination  />);
     // const test;
     // expect(test).not.toBeInTheDocument()
   });

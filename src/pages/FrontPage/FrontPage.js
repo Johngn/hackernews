@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { getAllStoryIDs, getAllItemDetails } from '../../utils/httpRequests';
+import { getAllStoryIDs, getAllStoryDetails } from '../../utils/httpRequests';
 
 import StoryListItem from '../../components/StoryListItem/StoryListItem';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
-import './StoryList.scss';
+import './FrontPage.scss';
 import Header from '../../components/Header/Header';
-import PaginationButtons from '../../components/PaginationButtons/PaginationButtons';
+import Pagination from '../../components/Pagination/Pagination';
 
-const StoryList = () => {
+const FrontPage = () => {
   const [page, setPage] = useState(0);
   const [sortType, setSortType] = useState('id');
   const [stories, setStories] = useState([]);
@@ -20,15 +20,15 @@ const StoryList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(30).then(data => {
+    getAllStoryIDs(12).then(data => {
       setStoryIds(data);
     });
   }, []);
 
   useEffect(() => {
     if (storyIds.length > 0) {
-      getAllItemDetails(storyIds).then(data => {
-        setStories(data);
+      getAllStoryDetails(storyIds).then(data => {
+        setStories(data); // reserve data for filtering
         setFilteredStories(data);
         setIsLoading(false);
       });
@@ -66,9 +66,7 @@ const StoryList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : (
+  const StoryList = (
     <div className="story-list">
       <Header
         searchTerm={searchTerm}
@@ -94,7 +92,7 @@ const StoryList = () => {
       </div>
 
       {filteredStories.length > 0 ? (
-        <PaginationButtons
+        <Pagination
           stories={filteredStories}
           page={page}
           setPage={setPage}
@@ -107,6 +105,8 @@ const StoryList = () => {
       )}
     </div>
   );
+
+  return isLoading ? <LoadingSpinner /> : StoryList;
 };
 
-export default StoryList;
+export default FrontPage;

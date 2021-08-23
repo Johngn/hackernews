@@ -1,6 +1,6 @@
-import './PaginationButtons.scss';
+import './Pagination.scss';
 
-const PaginationButtons = ({ stories, page, setPage, pageLength }) => {
+const Pagination = ({ stories, page, setPage, pageLength }) => {
   return (
     <div className="pagination-button-container">
       <button disabled={page === 0} onClick={() => setPage(page - 1)}>
@@ -27,4 +27,4 @@ const PaginationButtons = ({ stories, page, setPage, pageLength }) => {
   );
 };
 
-export default PaginationButtons;
+export default Pagination;

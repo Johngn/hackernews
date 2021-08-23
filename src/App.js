@@ -1,11 +1,11 @@
 import Navbar from './components/Navbar/Navbar';
-import StoryList from './pages/StoryList/StoryList';
+import FrontPage from './pages/FrontPage/FrontPage';
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <StoryList />
+      <FrontPage />
     </>
   );
 };

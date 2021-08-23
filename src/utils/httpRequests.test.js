@@ -1,7 +1,7 @@
 import {
   getAllStoryIDs,
-  getSingleItemDetails,
-  getAllItemDetails,
+  getSingleStoryDetails,
+  getAllStoryDetails,
 } from './httpRequests';
 
 describe('get top story IDs from hackernews API', () => {
@@ -20,10 +20,11 @@ describe('get top story IDs from hackernews API', () => {
   });
 });
 
-test('getSingleItemDetails returns correct story details for particular ID', async () => {
-  const testID = 8863; // example from https://github.com/HackerNews/API docs
-  const itemDetails = await getSingleItemDetails(testID);
+test('getSingleStoryDetails returns correct story details for particular ID', async () => {
+  const testID = 8863; // example ID from https://github.com/HackerNews/API docs
+  const itemDetails = await getSingleStoryDetails(testID);
 
+  // example story from https://github.com/HackerNews/API docs
   const expectedResult = {
     by: 'dhouston',
     descendants: 71,
@@ -43,23 +44,32 @@ test('getSingleItemDetails returns correct story details for particular ID', asy
   expect(itemDetails).toEqual(expectedResult);
 });
 
-describe('getAllItemDetails', () => {
+describe('getAllStoryDetails', () => {
   test('returns array of objects of correct length', async () => {
     // exampleIDs taken from https://github.com/HackerNews/API docs
     const exampleIDs = [9127232, 9128437, 9130049];
-    const allItemDetails = await getAllItemDetails(exampleIDs);
+    const allItemDetails = await getAllStoryDetails(exampleIDs);
 
     expect(allItemDetails).toHaveLength(3);
   });
 
   test('returns array of stories with correct properties', async () => {
     const exampleIDs = [9127232, 9128437, 9130049];
-    const allItemDetails = await getAllItemDetails(exampleIDs);
+    const allItemDetails = await getAllStoryDetails(exampleIDs);
 
     allItemDetails.forEach(element => {
       expect(element).toHaveProperty('by');
       expect(element).toHaveProperty('id');
       expect(element).toHaveProperty('type', 'story');
     });
+  });
+
+  test('removes null values before returning array', async () => {
+    const idThatWillReturnNull = 28274652;
+    const exampleIDs = [idThatWillReturnNull, 9128437, 9130049];
+
+    const allItemDetails = await getAllStoryDetails(exampleIDs);
+
+    expect(allItemDetails).toHaveLength(2);
   });
 });
