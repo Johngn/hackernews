@@ -1,7 +1,8 @@
 import './Error.scss';
 
 const Error = ({ message }) => {
-  const displayedMessage = message || 'An unexpected error occured';
+  const displayedMessage =
+    message || 'An unexpected error occured. Try again later';
 
   return (
     <div className="error">

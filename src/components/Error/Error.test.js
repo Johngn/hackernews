@@ -12,7 +12,9 @@ describe('Error component', () => {
   test('displays backup error if props are falsey', () => {
     render(<Error message={''} />);
 
-    const errorTest = screen.getByText('An unexpected error occured');
+    const errorTest = screen.getByText(
+      'An unexpected error occured. Try again later'
+    );
     expect(errorTest).toBeInTheDocument();
   });
 });
