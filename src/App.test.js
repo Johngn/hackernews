@@ -100,4 +100,14 @@ describe('Frontpage', () => {
     // story at [4] in  mockStories has highest number of comments after story at [13] is removed
     expect(storyList[0].href).toEqual(mockStories[4].url);
   });
+
+  test('displays correct message when no stories are found', () => {
+    render(<FrontPage stories={[]} />);
+
+    const storyList = screen.queryAllByRole('link');
+    expect(storyList).toHaveLength(0);
+
+    const text = screen.getByRole('heading', { name: 'No stories found' });
+    expect(text).toBeInTheDocument();
+  });
 });

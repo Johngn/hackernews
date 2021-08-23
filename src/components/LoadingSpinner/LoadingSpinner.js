@@ -1,5 +1,4 @@
 import RingLoader from 'react-spinners/RingLoader';
-
 import './LoadingSpinner.scss';
 
 const LoadingSpinner = () => {
