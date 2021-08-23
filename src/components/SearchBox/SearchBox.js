@@ -3,7 +3,7 @@ import './SearchBox.scss';
 const SearchBox = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className="search-box">
-      <label htmlFor="search">Search:</label>
+      <label htmlFor="search">Search</label>
       <input
         type="text"
         id="search"
