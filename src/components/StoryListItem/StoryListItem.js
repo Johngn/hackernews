@@ -11,8 +11,7 @@ const StoryListItem = ({ score, by, title, url, descendants }) => {
 
       <div className="footer">
         <p>
-          {score} {score === 1 ? 'point' : 'points'} - Posted by user:{' '}
-          <span>{by}</span>
+          {score} {score === 1 ? 'point' : 'points'} - Posted by user: {by}
         </p>
         <p className="comments">
           {descendants} {descendants === 1 ? 'comment' : 'comments'}
