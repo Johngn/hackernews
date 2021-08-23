@@ -26,7 +26,7 @@ describe('Story list component', () => {
     expect(commentElement).toBeInTheDocument();
   });
 
-  test('removes s at end of "points" and "comments" when amount = 1', () => {
+  test('removes "s" at end of "points" and "comments" when amount = 1', () => {
     render(<StoryListItem by={'testUser'} score={1} descendants={1} />);
 
     const userElement = screen.getByText('1 point - Posted by user: testUser');
