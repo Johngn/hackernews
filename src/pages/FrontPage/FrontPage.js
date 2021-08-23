@@ -44,7 +44,7 @@ const FrontPage = () => {
     if (error) {
       setIsLoading(false);
     }
-  }, [storyIds]);
+  }, [error, storyIds]);
 
   useEffect(() => {
     const sortArray = type => {
@@ -65,7 +65,7 @@ const FrontPage = () => {
     sortArray(sortType);
     setPage(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortType]);
+  }, [sortType, error]);
 
   useEffect(() => {
     const filteredStories = stories.filter(story =>

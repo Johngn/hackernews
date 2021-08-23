@@ -48,7 +48,7 @@ describe('getSingleStoryDetails', () => {
   });
 
   test('return null on ID that does not exist', async () => {
-    const testID = 999999999; // example ID from https://github.com/HackerNews/API docs
+    const testID = 999999999;
     const storyDetails = await getSingleStoryDetails(testID);
 
     expect(storyDetails).toBeNull();
