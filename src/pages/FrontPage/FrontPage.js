@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import './FrontPage.scss';
 import Header from '../../components/Header/Header';
 import Pagination from '../../components/Pagination/Pagination';
+import Error from '../../components/Error/Error';
 
 const FrontPage = () => {
   const [page, setPage] = useState(0);
@@ -14,24 +15,34 @@ const FrontPage = () => {
   const [stories, setStories] = useState([]);
   const [filteredStories, setFilteredStories] = useState([]);
   const [storyIds, setStoryIds] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState(null);
   const pageLength = 12;
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(12).then(data => {
+    getAllStoryIDs(12).then(res => {
+      const [data, errorMessage] = res;
+
       setStoryIds(data);
+      setError(errorMessage);
     });
   }, []);
 
   useEffect(() => {
-    if (storyIds.length > 0) {
-      getAllStoryDetails(storyIds).then(data => {
+    if (storyIds.length > 0 && !error) {
+      getAllStoryDetails(storyIds).then(res => {
+        const [data, errorMessage] = res;
+
+        setError(errorMessage);
         setStories(data); // reserve data for filtering
         setFilteredStories(data);
         setIsLoading(false);
       });
+    }
+    if (error) {
+      setIsLoading(false);
     }
   }, [storyIds]);
 
@@ -106,7 +117,13 @@ const FrontPage = () => {
     </div>
   );
 
-  return isLoading ? <LoadingSpinner /> : StoryList;
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : error ? (
+    <Error message={error} />
+  ) : (
+    StoryList
+  );
 };
 
 export default FrontPage;
