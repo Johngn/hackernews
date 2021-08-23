@@ -1,26 +1,28 @@
 import './Pagination.scss';
 
-const Pagination = ({ stories, page, setPage, pageLength }) => {
+const Pagination = ({ storiesLength, page, setPage, pageLength }) => {
+  const lowValue = page * pageLength + 1;
+  const highValue =
+    page * pageLength + pageLength > storiesLength
+      ? storiesLength
+      : page * pageLength + pageLength;
+
+  const disablePrev = page === 0;
+  const disableNext = page >= storiesLength / pageLength - 1;
+
   return (
     <div className="pagination-button-container">
-      <button disabled={page === 0} onClick={() => setPage(page - 1)}>
+      <button disabled={disablePrev} onClick={() => setPage(page - 1)}>
         Prev
       </button>
 
-      <div style={{ textAlign: 'center' }}>
+      <div>
         <p>
-          {page * pageLength + 1}-
-          {page * pageLength + pageLength > stories.length
-            ? stories.length
-            : page * pageLength + pageLength}{' '}
-          of {stories.length}
+          {lowValue}-{highValue} of {storiesLength}
         </p>
       </div>
 
-      <button
-        disabled={page >= stories.length / pageLength - 1}
-        onClick={() => setPage(page + 1)}
-      >
+      <button disabled={disableNext} onClick={() => setPage(page + 1)}>
         Next
       </button>
     </div>

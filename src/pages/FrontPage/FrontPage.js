@@ -3,11 +3,12 @@ import { getAllStoryIDs, getAllStoryDetails } from '../../utils/httpRequests';
 
 import StoryListItem from '../../components/StoryListItem/StoryListItem';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-
-import './FrontPage.scss';
-import Header from '../../components/Header/Header';
+import SearchBox from '../../components/SearchBox/SearchBox';
+import SortSelect from '../../components/SortSelect/SortSelect';
 import Pagination from '../../components/Pagination/Pagination';
 import Error from '../../components/Error/Error';
+
+import './FrontPage.scss';
 
 const FrontPage = () => {
   const [page, setPage] = useState(0);
@@ -22,8 +23,10 @@ const FrontPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(12).then(res => {
+    console.log('testtest');
+    getAllStoryIDs(30).then(res => {
       const [data, errorMessage] = res;
+      console.log(data);
 
       setStoryIds(data);
       setError(errorMessage);
@@ -31,9 +34,12 @@ const FrontPage = () => {
   }, []);
 
   useEffect(() => {
+    console.log('testtesttest');
     if (storyIds.length > 0 && !error) {
+      console.log(isLoading);
       getAllStoryDetails(storyIds).then(res => {
         const [data, errorMessage] = res;
+        console.log(res);
 
         setError(errorMessage);
         setStories(data); // reserve data for filtering
@@ -79,12 +85,10 @@ const FrontPage = () => {
 
   const StoryList = (
     <div className="story-list">
-      <Header
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        sortType={sortType}
-        setSortType={setSortType}
-      />
+      <div className="story-list-header">
+        <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <SortSelect sortType={sortType} setSortType={setSortType} />
+      </div>
 
       <div className="story-list-story-container">
         {filteredStories
@@ -104,7 +108,7 @@ const FrontPage = () => {
 
       {filteredStories.length > 0 ? (
         <Pagination
-          stories={filteredStories}
+          storiesLength={filteredStories.length}
           page={page}
           setPage={setPage}
           pageLength={pageLength}

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import FrontPage from './FrontPage';
 
 test('displays list of stories', async () => {
-  render(<FrontPage />);
+  const { findByRole } = render(<FrontPage state={{ isLoading: false }} />);
 
-  // const list = await screen.findAllByRole('link');
+  const nextButton = await screen.findAllByRole('button');
   // expect(list).toHaveLength(3);
 });
