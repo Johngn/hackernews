@@ -6,6 +6,8 @@ import FrontPage from './pages/FrontPage/FrontPage';
 import Error from './components/Error/Error';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
+import { numberOfStories } from './config';
+
 const App = () => {
   const [storyIds, setStoryIds] = useState([]);
   const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(100).then(res => {
+    getAllStoryIDs(numberOfStories).then(res => {
       const [data, errorMessage] = res;
 
       setStoryIds(data);
