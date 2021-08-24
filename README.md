@@ -90,7 +90,7 @@ This project was built with React, a framework/library which is not very opinina
 
 Functional components were used exclusively, in line with the recommedations for the most up to date versions of React, and therefore hooks were used to manage state and execute side effects.
 
-This was quite a simple application, with only one main 'page'; the FrontPage component. However I still created a separate directory for the pages, and placed this component there. The functionality of manipulating the results after they were recieved, such as sorting and pagination, is contained within this component. The actual requests were extracted to `src/utils/httpRequests.js`.
+This was quite a simple application, with only one main 'page'; the FrontPage component. However I still created a separate directory for the pages, and placed this component there. The functionality of manipulating the results after they were recieved, such as sorting and pagination, is contained within this component. The actual requests were extracted to `src/utils/httpRequests.js` as I like to keep these separate from the actual component logic. This makes for cleaner code and allows for more focused testing.
 
 The FrontPage component contains an effect that runs whenever the search box is used or a different option on the select is chosen. The effect then filters and sorts the stories based on those inputs. The pagination state is also contained within this component, but the pagination buttons have their own component, with the state being lifted up to the parent component. The array of displayed stories is then simply sliced based on the pagination state, and the pagination component itself also reflects these changes.
 
