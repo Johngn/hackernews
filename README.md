@@ -100,7 +100,7 @@ The requests were placed in `src/utils/httpRequests.js`. [Axios](https://axios-h
 
 This project uses the official [Hacker News API](https://github.com/HackerNews/API), which is free and does not require an API key. The endpoints that it provides are not ideal for creating a streamlined and fast application. The main endpoint to get the Top Stories is https://hacker-news.firebaseio.com/v0/topstories.json. This returns only the IDs of the stories, which is just an array of numbers. From there you have to individually call https://hacker-news.firebaseio.com/v0/item/{ID}.json for each story, which will return an object containing the story details, such as the author, number of comments, external link and so on.
 
-Because the main endpoint only returns IDs, I had to call the endpoint to get story details in a loop, making a request with each ID to populate the FrontPage component with stories. As the main endpoint returns 500 IDs, this results in a slowdown as the page loads. I faked a way to fix this by slicing the ID array and just fetching fewer stories. To change the amount of stories requested you need to edit `src/config.js`, within which you can also edit the number of stories shown per page. The defaults are 100 requests and 13 stories per page.
+Because the main endpoint only returns IDs, I had to call the endpoint to get story details in a loop, making a request with each ID to populate the FrontPage component with stories. As the main endpoint returns 500 IDs, this results in a slowdown as the page loads. I faked a way to fix this by slicing the ID array and just fetching fewer stories. To change the amount of stories requested you need to edit `src/config.js`. The default is 100 requests.
 
 ### Styling
 
