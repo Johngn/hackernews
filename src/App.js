@@ -41,13 +41,15 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
         <Error message={error} />
       ) : (
-        <FrontPage stories={stories} />
+        <>
+          <Navbar />
+          <FrontPage stories={stories} />
+        </>
       )}
     </>
   );
