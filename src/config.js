@@ -1,1 +1,1 @@
-export const numberOfStoriesRequested = 50; // change to null/false/''/0 to fetch all stories
+export const numberOfStoriesRequested = 100; // change to null/false/''/0 to fetch all stories

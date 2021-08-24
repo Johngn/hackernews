@@ -31,7 +31,7 @@
 
 ## About The Project
 
-This project is a re-skin of [Hacker News](https://news.ycombinator.com/). The original website is a message board where users can post links to news stories and discuss them. They are usually related to programming or technology in some way. The point of this project is to improve on the aesthetics of the original website, and to enable better pagination, sorting, and searching.
+This project is a re-skin of [Hacker News](https://news.ycombinator.com/). The original website is a message board where users can post links to news stories and discuss them. They cover a wide range of topics, but are often related to programming or technology in some way. The point of this project is to improve on the aesthetics of the original website, and to enable better pagination, sorting, and searching.
 
 The finished project is deployed at https://hardcore-wilson-5cf278.netlify.app/.
 
