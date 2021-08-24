@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { pageLength } from '../../config';
 
 import StoryListItem from '../../components/StoryListItem/StoryListItem';
 import SearchBox from '../../components/SearchBox/SearchBox';
@@ -12,8 +13,6 @@ const FrontPage = ({ stories }) => {
   const [sortType, setSortType] = useState('id');
   const [displayStories, setDisplayStories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
-  const pageLength = 13;
 
   useEffect(() => {
     const sortArray = type => {

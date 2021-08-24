@@ -28,15 +28,15 @@ This project is a re-skin of [Hacker News](https://news.ycombinator.com/). The o
 ### Built With
 
 - [React](https://reactjs.org/)
-- [SASS](https://sass-lang.com/)
 - [Jest](https://jestjs.io/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [SASS](https://sass-lang.com/)
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
@@ -58,3 +58,23 @@ npm install npm@latest -g
    ```
 
 ## Design
+
+This project was built with React, a framework/library which is not very opininated, allowing for a lot of different approaches to designing an application. I like to keep high level components which comprise pages in a 'pages' directory, with smaller building block components in a 'components' directory. Each component then gets its own directory, containing the component file, as well as the styles for that component and any tests that relate to the component.
+
+Functional components were used exclusively, in line with the recommedations for the most up to date versions of React, and therefore hooks were used to manage state and execute side effects.
+
+This was quite a simple application, with only one main 'page'; the FrontPage component. However I still created a separate directory for the pages, and placed this component there. The functionality of manipulating the results after they were recieved, such as sorting and pagination, is contained within this component. The actual requests were extracted to a separate 'utils' folder.
+
+## Requests
+
+The requests were placed in httpRequests.js in the 'utils' folder. [Axios](https://axios-http.com/) was used to make the requests just because of personal preference. I find it a bit more streamlined than the native Fetch API although both work equally well for most use cases.
+
+This project uses the official [Hacker News API](https://github.com/HackerNews/API), which is free and does not require an API key. The endpoints that it provides are not ideal for creating a streamlined and fast application. The main endpoint to get the Top Stories is https://hacker-news.firebaseio.com/v0/topstories.json. This returns only the IDs of the stories, which is just an array of numbers. From there you have to individually call https://hacker-news.firebaseio.com/v0/item/{ID}.json for each story, which will return an object containing the details of the story.
+
+Because the main endpoint only returns IDs, I had to call the endpoint to get story details in a loop, making a request with each ID to populate the FrontPage component with stories. As the main endpoint returns 500 IDs, this results in a slowdown as the page loads. I faked a way to fix this by slicing the ID array and just fetching fewer stories. To change the amount of stories requested
+
+## Styling
+
+There are many different ways to style a React application. I chose here to use SASS, and to
+
+## Testing

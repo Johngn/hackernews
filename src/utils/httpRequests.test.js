@@ -9,7 +9,7 @@ describe('get top story IDs from hackernews API', () => {
     const [resultArray, error] = await getAllStoryIDs(10);
 
     expect(resultArray).toHaveLength(10);
-    expect(error).toBeNull;
+    expect(error).toBeNull();
   });
 
   test('returns an array of IDs that are numbers', async () => {
@@ -18,7 +18,15 @@ describe('get top story IDs from hackernews API', () => {
     resultArray.forEach(element => {
       expect(typeof element).toBe('number');
     });
-    expect(error).toBeNull;
+    expect(error).toBeNull();
+  });
+
+  test('returns all IDs if argument is falsey', async () => {
+    const [resultArray, error] = await getAllStoryIDs(undefined);
+
+    // Doesn't always return exactly 500, so check length is greater than 490
+    expect(resultArray.length).toBeGreaterThan(490);
+    expect(error).toBeNull();
   });
 });
 
@@ -27,24 +35,15 @@ describe('getSingleStoryDetails', () => {
     const testID = 8863; // example ID from https://github.com/HackerNews/API docs
     const storyDetails = await getSingleStoryDetails(testID);
 
-    // Story that matches ID
-    const expectedResult = {
-      by: 'dhouston',
-      descendants: 71,
-      id: 8863,
-      kids: [
-        9224, 8917, 8952, 8958, 8884, 8887, 8869, 8940, 8908, 9005, 8873, 9671,
-        9067, 9055, 8865, 8881, 8872, 8955, 10403, 8903, 8928, 9125, 8998, 8901,
-        8902, 8907, 8894, 8870, 8878, 8980, 8934, 8943, 8876,
-      ],
-      score: 104,
-      time: 1175714200,
-      title: 'My YC app: Dropbox - Throw away your USB drive',
-      type: 'story',
-      url: 'http://www.getdropbox.com/u/2/screencast.html',
-    };
-
-    expect(storyDetails).toEqual(expectedResult);
+    // Story that matches ID (excluding properties that can change, such as score and descendants)
+    expect(storyDetails).toHaveProperty('by', 'dhouston');
+    expect(storyDetails).toHaveProperty('id', 8863);
+    expect(storyDetails).toHaveProperty('time', 1175714200);
+    expect(storyDetails).toHaveProperty(
+      'title',
+      'My YC app: Dropbox - Throw away your USB drive'
+    );
+    expect(storyDetails).toHaveProperty('type', 'story');
   });
 
   test('return null on ID that does not exist', async () => {
