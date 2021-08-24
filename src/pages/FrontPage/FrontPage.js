@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { pageLength } from '../../config';
 
 import StoryListItem from '../../components/StoryListItem/StoryListItem';
 import SearchBox from '../../components/SearchBox/SearchBox';
@@ -7,6 +6,8 @@ import SortSelect from '../../components/SortSelect/SortSelect';
 import Pagination from '../../components/Pagination/Pagination';
 
 import './FrontPage.scss';
+
+const pageLength = 12;
 
 const FrontPage = ({ stories }) => {
   const [page, setPage] = useState(0);
@@ -23,6 +24,7 @@ const FrontPage = ({ stories }) => {
       };
       const sortProperty = types[type];
 
+      // sort and filter stories in one function
       const filteredStories = [...stories]
         .filter(story =>
           story.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
@@ -33,7 +35,8 @@ const FrontPage = ({ stories }) => {
     };
 
     sortArray(sortType);
-    setPage(0);
+
+    setPage(0); // reset to front page when sorting or searching
   }, [stories, sortType, searchTerm]);
 
   return (

@@ -3,17 +3,16 @@ import './StoryListItem.scss';
 const StoryListItem = ({ score, by, title, url, descendants }) => {
   return (
     <div className="story-list-item">
-      <p>
-        <a className="external-link" href={url}>
-          {title}
-        </a>
-      </p>
+      <a className="external-link" href={url}>
+        {title}
+      </a>
 
-      <div className="footer">
+      <div>
         <p>
-          {score} {score === 1 ? 'point' : 'points'} - Posted by user: {by}
+          {score} {score === 1 ? 'point' : 'points'} - Posted by user:{' '}
+          <span>{by}</span>
         </p>
-        <p className="comments">
+        <p>
           {descendants} {descendants === 1 ? 'comment' : 'comments'}
         </p>
       </div>

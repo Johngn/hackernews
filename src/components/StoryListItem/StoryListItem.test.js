@@ -17,10 +17,13 @@ describe('Story list component', () => {
     const link = screen.getByRole('link', { name: 'testTitle' });
     expect(link).toBeInTheDocument();
 
-    const userElement = screen.getByText(
-      '10 points - Posted by user: testUser'
-    );
+    const userElement = screen.getByText('testUser');
     expect(userElement).toBeInTheDocument();
+
+    const scoreElement = screen.getByText('10 points', {
+      exact: false,
+    });
+    expect(scoreElement).toBeInTheDocument();
 
     const commentElement = screen.getByText('5 comments');
     expect(commentElement).toBeInTheDocument();
@@ -29,8 +32,10 @@ describe('Story list component', () => {
   test('removes "s" at end of "points" and "comments" when amount = 1', () => {
     render(<StoryListItem by={'testUser'} score={1} descendants={1} />);
 
-    const userElement = screen.getByText('1 point - Posted by user: testUser');
-    expect(userElement).toBeInTheDocument();
+    const scoreElement = screen.getByText('1 point ', {
+      exact: false,
+    });
+    expect(scoreElement).toBeInTheDocument();
 
     const commentElement = screen.getByText('1 comment');
     expect(commentElement).toBeInTheDocument();

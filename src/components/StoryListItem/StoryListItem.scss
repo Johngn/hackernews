@@ -16,21 +16,19 @@
     color: #fff;
   }
 
-  .footer {
+  div {
+    margin: 1px 0;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 14px;
+    // font-weight: bold;
     align-items: center;
+    color: $text-color-dark;
 
     p {
       span {
         font-style: italic;
       }
-    }
-
-    .comments * {
-      font-size: 14px;
-      color: #fff;
     }
   }
 }

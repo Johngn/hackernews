@@ -46,15 +46,15 @@ describe('Frontpage', () => {
     const prevButton = screen.getByRole('button', { name: 'Prev' });
     const nextButton = screen.getByRole('button', { name: 'Next' });
 
-    expect(screen.getByText('1-13 of 15')).toBeInTheDocument();
+    expect(screen.getByText('1-12 of 15')).toBeInTheDocument();
 
     userEvent.click(nextButton);
-    expect(screen.getByText('14-15 of 15')).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(2);
+    expect(screen.getByText('13-15 of 15')).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(3);
 
     userEvent.click(prevButton);
-    expect(screen.getByText('1-13 of 15')).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(13);
+    expect(screen.getByText('1-12 of 15')).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(12);
   });
 
   test('typing in searchbox filters storyList', () => {
@@ -65,7 +65,7 @@ describe('Frontpage', () => {
     expect(screen.getAllByRole('link')).toHaveLength(1);
 
     userEvent.clear(searchBox);
-    expect(screen.getAllByRole('link')).toHaveLength(13);
+    expect(screen.getAllByRole('link')).toHaveLength(12);
 
     userEvent.type(searchBox, 'how');
     expect(screen.getAllByRole('link')).toHaveLength(2); // two stories have 'how' in their title
@@ -76,13 +76,13 @@ describe('Frontpage', () => {
 
     const nextButton = screen.getByRole('button', { name: 'Next' });
     userEvent.click(nextButton);
-    expect(screen.getByText('14-15 of 15')).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(2);
+    expect(screen.getByText('13-15 of 15')).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(3);
 
     const sortSelect = screen.getByRole('combobox');
     userEvent.selectOptions(sortSelect, ['Comments']);
-    expect(screen.getByText('1-13 of 15')).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(13);
+    expect(screen.getByText('1-12 of 15')).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(12);
   });
 
   test('sorting works on filtered stories', () => {
