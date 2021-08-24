@@ -25,3 +25,23 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .sort-select {
+    select {
+      width: 120px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .sort-select {
+    label {
+      font-size: 12px;
+    }
+    select {
+      width: 120px;
+      font-size: 12px;
+    }
+  }
+}

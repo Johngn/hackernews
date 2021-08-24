@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(10).then(res => {
+    getAllStoryIDs(100).then(res => {
       const [data, errorMessage] = res;
 
       setStoryIds(data);

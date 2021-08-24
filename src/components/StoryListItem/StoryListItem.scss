@@ -34,3 +34,11 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .story-list-item {
+    .external-link {
+      font-size: 16px;
+    }
+  }
+}

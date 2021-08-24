@@ -20,3 +20,22 @@
     border: $border;
   }
 }
+
+@media (max-width: 600px) {
+  .search-box {
+    input {
+      width: 150px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .search-box {
+    * {
+      font-size: 12px;
+    }
+    input {
+      width: 100px;
+    }
+  }
+}
