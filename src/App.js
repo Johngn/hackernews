@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { getAllStoryIDs, getAllStoryDetails } from './utils/httpRequests';
 
 import Navbar from './components/Navbar/Navbar';
@@ -15,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllStoryIDs(40).then(res => {
+    getAllStoryIDs(10).then(res => {
       const [data, errorMessage] = res;
 
       setStoryIds(data);

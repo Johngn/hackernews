@@ -27,7 +27,7 @@ describe('getSingleStoryDetails', () => {
     const testID = 8863; // example ID from https://github.com/HackerNews/API docs
     const storyDetails = await getSingleStoryDetails(testID);
 
-    // example story from https://github.com/HackerNews/API docs
+    // Story that matches ID
     const expectedResult = {
       by: 'dhouston',
       descendants: 71,

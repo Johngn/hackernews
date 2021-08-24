@@ -23,6 +23,7 @@ const FrontPage = ({ stories }) => {
         id: 'id',
       };
       const sortProperty = types[type];
+
       const filteredStories = [...stories]
         .filter(story =>
           story.title.toLowerCase().includes(searchTerm.toLowerCase().trim())
